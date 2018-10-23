@@ -281,6 +281,34 @@ SECP256K1_API SECP256K1_WARN_UNUSED_RESULT int secp256k1_rangeproof_info(
   size_t plen
 ) SECP256K1_ARG_NONNULL(1) SECP256K1_ARG_NONNULL(2) SECP256K1_ARG_NONNULL(3) SECP256K1_ARG_NONNULL(4) SECP256K1_ARG_NONNULL(5);
 
+/** Parse a public key object to a commitment object.
+ *  
+ *
+ *  Returns: 1 if input contains a valid commitment.
+ *  Args: ctx:      a secp256k1 context object.
+ *  Out:  commit:   pointer to the output commitment object
+ *  In:   input:    pointer to a pubkey object
+ */
+SECP256K1_API SECP256K1_WARN_UNUSED_RESULT int secp256k1_pedersen_commitment_parse_from_pubkey(
+    const secp256k1_context* ctx,
+    secp256k1_pedersen_commitment* commit,
+    secp256k1_pubkey* pubkey
+) SECP256K1_ARG_NONNULL(1) SECP256K1_ARG_NONNULL(2) SECP256K1_ARG_NONNULL(3);
+
+
+/** Parse a public key object to a commitment object.
+ *  
+ *
+ *  Returns: 1 if input contains a valid commitment.
+ *  Args: ctx:      a secp256k1 context object.
+ *  Out:  commit:   pointer to the output commitment object
+ *  In:   input:    pointer to a pubkey object
+ */
+SECP256K1_API SECP256K1_WARN_UNUSED_RESULT int secp256k1_pedersen_commitment_save_to_pubkey(
+    secp256k1_pubkey* pubkey,
+    secp256k1_pedersen_commitment* commit
+) SECP256K1_ARG_NONNULL(1) SECP256K1_ARG_NONNULL(2);
+
 # ifdef __cplusplus
 }
 # endif

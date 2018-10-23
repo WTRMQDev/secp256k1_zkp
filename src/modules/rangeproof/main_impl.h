@@ -275,4 +275,26 @@ int secp256k1_rangeproof_sign(const secp256k1_context* ctx, unsigned char *proof
      proof, plen, min_value, &commitp, blind, nonce, exp, min_bits, value, message, msg_len, extra_commit, extra_commit_len, &genp);
 }
 
+int secp256k1_pedersen_commitment_parse_from_pubkey(const secp256k1_context* ctx, secp256k1_pedersen_commitment* commit, secp256k1_pubkey* pubkey) {
+    int ret = 0;
+    secp256k1_ge ge;
+    secp256k1_pubkey_load(ctx, &ge, pubkey);
+    if (!secp256k1_ge_is_infinity(&ge)) {
+            secp256k1_pedersen_commitment_save(commit, &ge);
+            ret = 1;
+    }
+    return ret;
+}
+
+int secp256k1_pedersen_commitment_save_to_pubkey(secp256k1_pubkey* pubkey, secp256k1_pedersen_commitment* commit) {
+    int ret = 0;
+    secp256k1_ge ge;
+    secp256k1_pedersen_commitment_load(&ge, commit);
+    if (!secp256k1_ge_is_infinity(&ge)) {
+            secp256k1_pubkey_save(pubkey, &ge);
+            ret = 1;
+    }
+    return ret;
+}
+
 #endif

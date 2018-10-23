@@ -19,4 +19,5 @@ static void secp256k1_pedersen_ecmult_small(secp256k1_gej *r, uint64_t gn, const
 /* sec * G + value * G2. */
 static void secp256k1_pedersen_ecmult(const secp256k1_ecmult_gen_context *ecmult_gen_ctx, secp256k1_gej *rj, const secp256k1_scalar *sec, uint64_t value, const secp256k1_ge* genp);
 
+
 #endif

@@ -48,4 +48,5 @@ SECP256K1_INLINE static void secp256k1_pedersen_ecmult(const secp256k1_ecmult_ge
     secp256k1_gej_clear(&vj);
 }
 
+
 #endif
